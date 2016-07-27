@@ -14,10 +14,14 @@ export default class TestLayout extends React.Component {
   };
 
   onClick(){
-    this.setState({width: 200});
+    // this.setState({width: 200, height: 200});
   }
 
   onResize(event, {element, size}){
+    // var width=size.width;
+    // var height= size.height;
+    // this.setState({width: width, height: height});
+
   };
 
   render() {
@@ -27,10 +31,10 @@ export default class TestLayout extends React.Component {
         <button onClick={this.onClick} style={{'marginBottom': '10px'}}>Reset first element's width/height</button>
         <Resizable className="box" height={this.state.height} width={this.state.width} onResize={this.onResize}>
           <div className="box" style={{width: this.state.width + 'px', height: this.state.height + 'px'}}>
-            <span className="text"> {"Raw use of element. 200x200, no constraints."} </span>
+            <span className="text">{"Raw use of <Resizable> element. 200x200, no constraints."}</span>
           </div>
         </Resizable>
-        <ResizableBox className="box" width={this.state.width} height={200}>
+        <ResizableBox className="box" width={this.state.width} height={200} >
           <span className="text"> {"<ResizableBox>, same as above."} </span>
         </ResizableBox>
         <ResizableBox className="box" width={200} height={200} draggableOpts={{grid: [25, 25]}}>

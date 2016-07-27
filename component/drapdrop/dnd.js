@@ -3,7 +3,12 @@ var PropTypes = React.PropTypes;
 var ReactDnd = require('react-dnd');
 var DragSource = ReactDnd.DragSource;
 var DropTarget = ReactDnd.DropTarget;
+var ResizableBox = require('react-resizable').ResizableBox;
+var Resizable = require('react-resizable').Resizable;
 var flow = require('lodash/flow');
+var WidthProvider = require('react-grid-layout').WidthProvider;
+var ResponsiveReactGridLayout = require('react-grid-layout').Responsive;
+ResponsiveReactGridLayout = WidthProvider(ResponsiveReactGridLayout);
 
 var drapResource = {
     beginDrag: function(props) {
@@ -87,14 +92,16 @@ var DnD = React.createClass({
 
         return connectDragSource(connectDropTarget(
           <div style = {{
-            background: isDragging ? '#F0F4C3' : 'White',
+            background: isDragging ? '#F0F4C3' : 'green',
             opacity: isDragging ? 0.5 : 1,
             fontSize: 16,
+            border: 1,
             cursor: 'move'}}
             className={this.props.className} >
-            <div className={className} style={{height:'385px'}}>
-                  {this.props.list.id}
-            </div>
+              <ResizableBox className={className} width={400} height={200} minConstraints={[150, 150]} >
+                {this.props.list.id}
+              </ResizableBox>
+
             </div>
         ));
     }

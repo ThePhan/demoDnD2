@@ -1,6 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import DnD from './dnd';
+
+var ResizableBox = require('react-resizable').ResizableBox;
+var Resizable = require('react-resizable').Resizable;
 var DragDropContext = require('react-dnd').DragDropContext;
 var HTML5Backend = require('react-dnd-html5-backend');
 
