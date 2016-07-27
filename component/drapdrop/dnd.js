@@ -15,6 +15,8 @@ var drapResource = {
     endDrag(props, monitor) {
         var item = monitor.getItem();
         var dropResult = monitor.getDropResult();
+        console.log("check dropResult " + dropResult);
+        // after finish drap, change place betwen toe Component
         if (dropResult) {
           props.changePlace(item.index, dropResult.index);
         }
@@ -23,8 +25,10 @@ var drapResource = {
 
 var dropField = {
   canDrop: function (props, monitor) {
-      var item = monitor.getItem(); // to get value from return beginDrag
-      var dropResult = monitor.getDropResult();
+      var item = monitor.getItem(); // to get value return from beginDrag
+      // var dropResult = monitor.getDropResult();
+      // console.log("check dropResult " + dropResult);
+      // console.log("check item" +item.index + " ddddddd " + props.index);
       if(item.index == props.index){
         return false;
       }
@@ -59,6 +63,7 @@ var DnD = React.createClass({
         connectDragSource: PropTypes.func.isRequired,
         connectDropTarget: PropTypes.func.isRequired,
         isDragging: PropTypes.bool.isRequired,
+        isOver: PropTypes.bool.isRequired,
         canDrop: PropTypes.bool.isRequired
 
 
@@ -67,22 +72,30 @@ var DnD = React.createClass({
         var connectDragSource = this.props.connectDragSource;
         var connectDropTarget = this.props.connectDropTarget;
         var isDragging = this.props.isDragging;
-        var canDrop = this.props.canDrop;;
-        var style = {
-            width: "80px",
-            height: "80px",
-            background: isDragging ? 'Yellow' : 'Green',
-            opacity: isDragging ? 0.5 : 1,
-            fontSize: 16,
-            cursor: 'move'
-        };
+        var canDrop = this.props.canDrop;
+        var isOver = this.props.isOver;
+        var isActive = canDrop && isOver;
+        var className = '';
+        if(!isDragging){
+            if(isActive){
+                className = 'active';
+            }
+        }
+        // var style = {
+        //
+        // };
 
         return connectDragSource(connectDropTarget(
-          <div style = {style} >
-            <p>
-              {this.props.list}
-            </p>
-          </div>
+          <div style = {{
+            background: isDragging ? '#F0F4C3' : 'White',
+            opacity: isDragging ? 0.5 : 1,
+            fontSize: 16,
+            cursor: 'move'}}
+            className={this.props.className} >
+            <div className={className} style={{height:'385px'}}>
+                  {this.props.list.id}
+            </div>
+            </div>
         ));
     }
 });
