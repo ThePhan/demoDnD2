@@ -98,8 +98,53 @@ var DnD = React.createClass({
             border: 1,
             cursor: 'move'}}
             className={this.props.className} >
-              <ResizableBox className={className} width={400} height={200} minConstraints={[150, 150]} >
-                {this.props.list.id}
+              <ResizableBox  width={className} height={400} minConstraints={[150, 150]} >
+
+                {(() => {
+
+                    if(this.props.list.id==='item1'){
+                        return(
+                            <div className={className}>
+                                <img src="../../style/img/7.png"  width='100%' className="img-responsive"/>
+                            </div>
+                        )
+                    }
+                    if(this.props.list.id==='item2'){
+                        return(
+                            <div className={className} style={{height:'385px'}}>
+                                <img src="../../style/img/1.png" width='100%'  className="img-responsive"/>
+                            </div>
+                        )
+                    }
+                    if(this.props.list.id==='item3'){
+                        return(
+                            <div className={className} style={{height:'385px'}}>
+                                <img src="../../style/img/2.png" width='100%'  className="img-responsive"/>
+                            </div>
+                        )
+                    }
+                    if(this.props.list.id==='item4'){
+                        return(
+                            <div className={className} style={{height:'385px'}}>
+                                <img src="../../style/img/3.png" width='100%'  className="img-responsive"/>
+                            </div>
+                        )
+                    }
+                    if(this.props.list.id==='item6'){
+                        return(
+                            <div className={className} style={{height:'385px'}}>
+                                <img src="../../style/img/4.png" width='100%'  className="img-responsive"/>
+                            </div>
+                        )
+                    }
+                    if(this.props.list.id==='item8'){
+                        return(
+                            <div className={className}>
+                                <img src="../../style/img/8.png"  width='100%' className="img-responsive"/>
+                            </div>
+                        )
+                    }
+                })()}
               </ResizableBox>
 
             </div>

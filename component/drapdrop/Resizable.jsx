@@ -10,7 +10,6 @@ export default class TestLayout extends React.Component {
       width: 200,
       height: 200
     }
-    this.onClick = this.onClick.bind(this);
   };
 
   onClick(){

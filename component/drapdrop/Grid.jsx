@@ -1,3 +1,4 @@
+
 'use strict';
 var React = require('react');
 var PureRenderMixin = require('react/lib/ReactComponentWithPureRenderMixin');
@@ -14,7 +15,7 @@ var BasicLayout = React.createClass({
   getDefaultProps() {
     return {
       className: "layout",
-      items: [
+      lg: [
       {
         id:'item1',
         x: 3,
@@ -96,7 +97,7 @@ var BasicLayout = React.createClass({
     //   return (<div key={i}><span className="text">{i}</span></div>);
     // });
     return(
-      this.props.items.map(function(lk, i){
+      this.props.lg.map(function(lk, i){
         return(<div key={i}> {lk.id} </div>)
       })
     )
