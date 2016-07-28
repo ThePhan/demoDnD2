@@ -2,7 +2,14 @@ import React from 'react';
 import _ from 'lodash';
 import {Responsive, WidthProvider} from 'react-grid-layout';
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
-
+var Component1 = require('./component1/main');
+var Component2 = require('./component2/main');
+var Component3 = require('./component3/main');
+var Component4 = require('./component4/main');
+var Component5 = require('./component5/main');
+var Component6 = require('./component6/main');
+var Component7 = require('./component7/main');
+var Component8 = require('./component8/main');
 var ShowcaseLayout = React.createClass( {
 
   // static propTypes = {
@@ -52,73 +59,66 @@ var ShowcaseLayout = React.createClass( {
 
 				return (
 					<div key={i}>
-            {(() => {
-							var className = '';
-							if (l.type === 'component1') {
-								return (
-									<div className={className}>
-                  <p>111111111111</p>
+          {(() => {
+            var className = '';
+            if (l.type === 'component1') {
+              return (
+                <div className={className}>
+                  <Component1></Component1>
+                </div>
+              )
+            }
+            if (l.type === 'component2') {
+              return (
+                <div className={className}>
+                  <Component2></Component2>
+                </div>
+              )
+            }
+            if (l.type === 'component3') {
+              return (
+                <div className={className}>
+                  <Component3></Component3>
+                </div>
+              )
+            }
+            if (l.type === 'component4') {
+              return (
+                <div className={className}>
+                  <Component4></Component4>
+                </div>
+              )
+            }
+            if (l.type === 'component5') {
+              return (
+                <div className={className}>
+                  <Component5></Component5>
+                </div>
+              )
+            }
+            if (l.type === 'component6') {
+              return (
+                <div className={className}>
+                  <Component6></Component6>
+                </div>
+              )
+            }
+            if (l.type === 'component7') {
+              return (
+                <div className={className}>
+                  <Component7></Component7>
+                </div>
+              )
+            }
+            if (l.type === 'component8') {
+              return (
+                <div className={className}>
+                  <Component8></Component8>
+                </div>
+              )
+            }
 
-									</div>
-								)
-							}
-							if (l.type === 'component2') {
-								return (
-									<div className={className}>
-                  <p>2222222222222</p>
-
-									</div>
-								)
-							}
-							if (l.type === 'component3') {
-								return (
-									<div className={className}>
-                  <p>333333333</p>
-
-									</div>
-								)
-							}
-							if (l.type === 'component4') {
-								return (
-									<div className={className}>
-                  <p>4</p>
-
-									</div>
-								)
-							}
-							if (l.type === 'component5') {
-								return (
-									<div className={className}>
-                  <p>5</p>
-
-									</div>
-								)
-							}
-							if (l.type === 'component6') {
-								return (
-									<div className={className}>
-                  <p>6</p>
-
-									</div>
-								)
-							}
-							if (l.type === 'component7') {
-								return (
-									<div className={className}>
-                  <p>7</p>
-
-									</div>
-								)
-							}
-							if (l.type === 'component8') {
-								return (
-									<div className={className}>
-										<p>8</p>
-									</div>
-								)
-							}
-
-						})()}
+          })()}
 					</div>
 				);
 
