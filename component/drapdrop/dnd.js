@@ -6,15 +6,13 @@ var DropTarget = ReactDnd.DropTarget;
 var ResizableBox = require('react-resizable').ResizableBox;
 var Resizable = require('react-resizable').Resizable;
 var flow = require('lodash/flow');
-var WidthProvider = require('react-grid-layout').WidthProvider;
-var ResponsiveReactGridLayout = require('react-grid-layout').Responsive;
-ResponsiveReactGridLayout = WidthProvider(ResponsiveReactGridLayout);
 
 var drapResource = {
     beginDrag: function(props) {
       console.log('Draaaaaap Item Index: ' + props.index);
         return {
-            index: props.index
+            indexRow: props.indexRow,
+            indexList: props.indexList
         };
     },
     endDrag(props, monitor) {
@@ -23,7 +21,8 @@ var drapResource = {
         console.log("check dropResult " + dropResult);
         // after finish drap, change place betwen toe Component
         if (dropResult) {
-          props.changePlace(item.index, dropResult.index);
+          // props.changePlace(item.index, dropResult.index);
+          props.changePlace({indexRow:item.indexRow,indexList:item.indexList}, {indexRow:dropResult.indexRow,indexList:dropResult.indexList});
         }
       }
 };
@@ -34,7 +33,10 @@ var dropField = {
       // var dropResult = monitor.getDropResult();
       // console.log("check dropResult " + dropResult);
       // console.log("check item" +item.index + " ddddddd " + props.index);
-      if(item.index == props.index){
+      // if(item.index == props.index){
+      //   return false;
+      // }
+      if(item.indexRow == props.indexRow && item.indexList == props.indexList ){
         return false;
       }
       return true;
@@ -42,7 +44,8 @@ var dropField = {
     drop: function(props) {
       console.log('Drop Item Index: ' + props.index);
         return {
-            index: props.index
+            indexRow: props.indexRow,
+            indexList : props.indexList
         };
     }
 
@@ -92,35 +95,40 @@ var DnD = React.createClass({
 
         return connectDragSource(connectDropTarget(
           <div style = {{
-            background: isDragging ? '#F0F4C3' : 'green',
+            background: isDragging ? '#F0F4C3' : 'white',
             opacity: isDragging ? 0.5 : 1,
             fontSize: 16,
             border: 1,
-            cursor: 'move'}}
+            cursor: isDragging? 'move' : ''}}
             className={this.props.className} >
-              <ResizableBox  width={className} height={400} minConstraints={[150, 150]} >
 
                 {(() => {
 
                     if(this.props.list.id==='item1'){
                         return(
+                          <ResizableBox  width={1100} height={300} minConstraints={[1000, 200]} >
                             <div className={className}>
                                 <img src="../../style/img/7.png"  width='100%' className="img-responsive"/>
                             </div>
+                            </ResizableBox>
                         )
                     }
                     if(this.props.list.id==='item2'){
                         return(
+                          <ResizableBox  width={550} height={400} minConstraints={[150, 150]} >
                             <div className={className} style={{height:'385px'}}>
                                 <img src="../../style/img/1.png" width='100%'  className="img-responsive"/>
                             </div>
+                            </ResizableBox>
                         )
                     }
                     if(this.props.list.id==='item3'){
                         return(
+                          <ResizableBox  width={550} height={400} minConstraints={[150, 150]} >
                             <div className={className} style={{height:'385px'}}>
                                 <img src="../../style/img/2.png" width='100%'  className="img-responsive"/>
                             </div>
+                            </ResizableBox>
                         )
                     }
                     if(this.props.list.id==='item4'){
@@ -145,7 +153,6 @@ var DnD = React.createClass({
                         )
                     }
                 })()}
-              </ResizableBox>
 
             </div>
         ));
